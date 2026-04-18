@@ -11,6 +11,8 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
     strategy:
       matrix:
         os: [ubuntu-latest, ubuntu-22.04-arm]
@@ -28,7 +30,9 @@ jobs:
 
       - name: Upload package to release
         run: |
-          gh release create ${{ github.event.inputs.tag }} --generate-notes || true
+          # Try to create release if it doesn't exist, ignore error if already exists
+          gh release create ${{ github.event.inputs.tag }} --generate-notes 2>/dev/null || true
+          # Upload assets to the release (existing or newly created)
           gh release upload ${{ github.event.inputs.tag }} opencode* --clobber
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
