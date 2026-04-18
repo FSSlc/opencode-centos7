@@ -23,11 +23,8 @@ jobs:
         with:
           pixi-version: latest
 
-      - name: Install conda constructor
-        run: pixi run pixi add constructor
-
       - name: Build installer package
-        run: pixi run constructor .
+        run: pixi run build
 
       - name: Upload package to release
         run: |

@@ -6,8 +6,6 @@ channels:
 
 specs:
   - opencode 1.4.4
-  - bash
-  - conda
   - patchelf
   - sysroot-conda_2_28-x86_64 # [linux-64]
   - sysroot-conda_2_28-x86_64 # [linux-aarch64]
