@@ -1,0 +1,15 @@
+name: opencode
+version: "1.4.4"
+channels:
+  - https://prefix.dev/conda-forge
+  - https://prefix.dev/github-releases
+
+specs:
+  - opencode 1.4.4
+  - bash
+  - conda
+  - patchelf
+  - sysroot-conda_2_28-x86_64 # [linux-64]
+  - sysroot-conda_2_28-x86_64 # [linux-aarch64]
+
+post_install: patch-opencode.sh
