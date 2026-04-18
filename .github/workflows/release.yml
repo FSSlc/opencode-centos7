@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup pixi
-        uses: prefix-dev/setup-pixi@v0.5.5
+        uses: prefix-dev/setup-pixi@v0.9.5
         with:
           pixi-version: latest
 
@@ -27,7 +27,7 @@ jobs:
         run: pixi run pixi add constructor
 
       - name: Build installer package
-        run: pixi run constructor construct.yaml
+        run: pixi run constructor .
 
       - name: Upload package to release
         run: |
