@@ -1,0 +1,37 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (e.g., v1.0.0)'
+        required: true
+        type: string
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04-arm]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pixi
+        uses: prefix-dev/setup-pixi@v0.5.5
+        with:
+          pixi-version: latest
+
+      - name: Install conda constructor
+        run: pixi run pixi add constructor
+
+      - name: Build installer package
+        run: pixi run constructor construct.yaml
+
+      - name: Upload package to release
+        run: |
+          gh release create ${{ github.event.inputs.tag }} --generate-notes || true
+          gh release upload ${{ github.event.inputs.tag }} opencode* --clobber
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
