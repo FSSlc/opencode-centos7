@@ -7,7 +7,7 @@ channels:
 specs:
   - opencode 1.4.4
   - patchelf
-  - sysroot-conda_2_28-x86_64 # [linux-64]
-  - sysroot-conda_2_28-x86_64 # [linux-aarch64]
+  - sysroot-conda_2_28-x86_64 # [linux64]
+  - sysroot-conda_2_28-aarch64 # [aarch64]
 
 post_install: patch-opencode.sh
