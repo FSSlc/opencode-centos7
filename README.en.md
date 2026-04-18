@@ -74,3 +74,4 @@ Through these patches, opencode can run on CentOS 7 and other legacy systems wit
 - Use conda constructor for packaging, available to regular users
 - Added support for linux-aarch64
 - No need to manually compile gcc, glibc, etc.
+- Release package through github action

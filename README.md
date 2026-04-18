@@ -61,16 +61,17 @@
 - 添加 GitHub Actions workflow 用于自动化 release 构建和发布
 - 支持 linux-64 和 linux-aarch64 架构的包构建
 
-### 未来计划
+## 未来计划
 - 扩展支持更多老旧 Linux 发行版
 - 优化构建流程和文档
 
-### 参考项目
+## 参考项目
 
 - https://github.com/YangLeiSX/opencode-centos7
 - https://github.com/Tao-Yida/opencode-on-centos7
 
-改进点：
-    - 使用 conda constructor 打包，普通用户可用
-    - 增加 linux-aarch64 支持
-    - 无需手动编译 gcc glibc 等
+## 改进点
+- 使用 conda constructor 打包，普通用户可用
+- 增加 linux-aarch64 支持
+- 无需手动编译 gcc glibc 等
+- 使用 github action 发布制品
