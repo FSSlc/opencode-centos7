@@ -1,11 +1,11 @@
 name: opencode
-version: "1.4.4"
+version: "1.14.50"
 channels:
   - https://prefix.dev/conda-forge
   - https://prefix.dev/github-releases
 
 specs:
-  - opencode 1.4.4
+  - opencode 1.14.50
   - patchelf
   - sysroot-conda_2_28-x86_64 # [linux64]
   - sysroot-conda_2_28-aarch64 # [aarch64]
