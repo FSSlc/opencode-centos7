@@ -7,7 +7,7 @@ channels:
 specs:
   - opencode 1.17.18
   - patchelf
-  - sysroot_linux-64 2.39 # [linux64]
-  - sysroot_linux-aarch64 2.39 # [aarch64]
+  - sysroot_linux-64 2.34 # [linux64]
+  - sysroot_linux-aarch64 2.34 # [aarch64]
 
 post_install: patch-opencode.sh
