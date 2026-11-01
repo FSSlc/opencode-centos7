@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Release tag (e.g., v1.0.0)'
+        description: 'Release tag, also the opencode version (e.g., v1.17.18)'
         required: true
         type: string
 
@@ -26,7 +26,21 @@ jobs:
           pixi-version: latest
 
       - name: Build installer package
-        run: pixi run build
+        env:
+          TAG: ${{ github.event.inputs.tag }}
+        run: |
+          VERSION="${TAG#v}"
+          if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "无效的 tag：$TAG，期望格式为 vX.Y.Z" >&2
+            exit 1
+          fi
+          # 版本以 workflow 输入为准，覆盖 construct.yaml 中的版本号
+          sed -i -E \
+            -e "s/^version: \".*\"$/version: \"$VERSION\"/" \
+            -e "s/^  - opencode .*$/  - opencode $VERSION/" \
+            construct.yaml
+          cat construct.yaml
+          pixi run build
 
       - name: Upload package to release
         run: |
